@@ -7,8 +7,8 @@ from urllib.parse import urlencode
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 import imghdr
 
-UID = 0  # 你的UID
-ACCESS_KEY = ""  # 你的ACCESS_KEY (TV端,非TV端自行更换下面的APPKEY,APPSECRET,TV端access_key获取工具 https://github.com/XiaoMiku01/fansMedalHelper/releases/tag/logintool)
+UID = 1772442517  # 你的UID
+ACCESS_KEY = "8c71b6f544ed4181046117c3efe406c2"  # 你的ACCESS_KEY (TV端,非TV端自行更换下面的APPKEY,APPSECRET,TV端access_key获取工具 https://github.com/XiaoMiku01/fansMedalHelper/releases/tag/logintool)
 FACE_PATH = r"face.jpg"  # 头像路径 推荐正方形
 BG_PATH = r"background.jpg"  # 背景图路径 推荐 9:16 竖版原图 效果非常好
 
@@ -102,19 +102,21 @@ def get_one_card_id():
 
 def set_face(card_id):
     api = "https://api.bilibili.com/x/member/app/face/digitalKit/update"
-    params = {
-        "access_key": ACCESS_KEY,
-        "appkey": "4409e2ce8ffd12b8",
-        "build": "7090300",
-        "c_locale": "zh_CN",
-        "channel": "xiaomi",
-        "disable_rcmd": "0",
-        "mobi_app": "android",
-        "platform": "android",
-        "s_locale": "zh_CN",
-        "statistics": "{\"appId\":1,\"platform\":3,\"version\":\"7.9.0\",\"abtest\":\"\"}",
-        "ts": int(time.time()),
-    }
+    params = SingableDict(
+        {
+            "access_key": ACCESS_KEY,
+            "appkey": "4409e2ce8ffd12b8",
+            "build": "7090300",
+            "c_locale": "zh_CN",
+            "channel": "xiaomi",
+            "disable_rcmd": "0",
+            "mobi_app": "android",
+            "platform": "android",
+            "s_locale": "zh_CN",
+            "statistics": "{\"appId\":1,\"platform\":3,\"version\":\"7.9.0\",\"abtest\":\"\"}",
+            "ts": int(time.time()),
+        }
+    ).signed
     m = MultipartEncoder(
         fields={
             'digital_kit_id': str(card_id),
@@ -133,22 +135,24 @@ def set_face(card_id):
 
 def set_bg_img(img_url, card_id):
     api = "https://app.bilibili.com//x/v2/space/digital/bind"
-    data = {
-        "access_key": ACCESS_KEY,
-        "appkey": "4409e2ce8ffd12b8",
-        "build": "7090300",
-        "c_locale": "zh_CN",
-        "card_id": card_id,
-        "channel": "xiaomi",
-        "disable_rcmd": "0",
-        "img_url": img_url,
-        "mobi_app": "android",
-        "platform": "android",
-        "s_locale": "zh_CN",
-        "space_bg_type": "1",
-        "statistics": "{\"appId\":1,\"platform\":3,\"version\":\"7.9.0\",\"abtest\":\"\"}",
-        "ts": int(time.time()),
-    }
+    data = SingableDict(
+        {
+            "access_key": ACCESS_KEY,
+            "appkey": "4409e2ce8ffd12b8",
+            "build": "7090300",
+            "c_locale": "zh_CN",
+            "card_id": card_id,
+            "channel": "xiaomi",
+            "disable_rcmd": "0",
+            "img_url": img_url,
+            "mobi_app": "android",
+            "platform": "android",
+            "s_locale": "zh_CN",
+            "space_bg_type": "1",
+            "statistics": "{\"appId\":1,\"platform\":3,\"version\":\"7.9.0\",\"abtest\":\"\"}",
+            "ts": int(time.time()),
+        }
+    ).signed
     headers = {
         "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
     }
@@ -165,7 +169,7 @@ def main():
         return
     img_url = upload_image(BG_PATH)
     set_bg_img(img_url, card_id)
-    set_face(card_id)
+    # set_face(card_id)
 
 
 if __name__ == '__main__':
