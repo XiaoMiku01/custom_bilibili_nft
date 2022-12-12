@@ -7,8 +7,8 @@ from urllib.parse import urlencode
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 import imghdr
 
-UID = 1772442517  # 你的UID
-ACCESS_KEY = "8c71b6f544ed4181046117c3efe406c2"  # 你的ACCESS_KEY (TV端,非TV端自行更换下面的APPKEY,APPSECRET,TV端access_key获取工具 https://github.com/XiaoMiku01/fansMedalHelper/releases/tag/logintool)
+UID = 0  # 你的UID
+ACCESS_KEY = ""  # 你的ACCESS_KEY (TV端,非TV端自行更换下面的APPKEY,APPSECRET,TV端access_key获取工具 https://github.com/XiaoMiku01/fansMedalHelper/releases/tag/logintool)
 FACE_PATH = r"face.jpg"  # 头像路径 推荐正方形
 BG_PATH = r"background.jpg"  # 背景图路径 推荐 9:16 竖版原图 效果非常好
 
