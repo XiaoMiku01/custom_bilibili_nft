@@ -1,4 +1,4 @@
-# custom_bilibili_nft 寄了
+# custom_bilibili_nft 寄了已经改过的人千万别动了，动了就被还原了
 
 自定义 B 站 NFT 空间背景和头像
 
