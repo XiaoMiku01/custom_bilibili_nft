@@ -167,8 +167,8 @@ def main():
     card_id = get_one_card_id()
     if not card_id:
         return
-    img_url = upload_image(BG_PATH)
-    set_bg_img(img_url, card_id)
+    # img_url = upload_image(BG_PATH)
+    # set_bg_img(img_url, card_id)
     set_face(card_id)
 
 
